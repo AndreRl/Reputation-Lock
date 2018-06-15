@@ -24,3 +24,6 @@ $l['reputationlock_disable'] = 'Disable Lock';
 $l['reputationlock_enable'] = 'Enable Lock';
 $l['reputationlock_redirect1'] = 'Reputation lock has been set.';
 $l['reputationlock_redirect2'] = 'Redirecting you back to previous page...';
+$l['reputationlock_error'] = 'Error';
+$l['reputationlock_errortime'] = 'You will need to wait until ';
+$l['reputationlock_errortime2'] = ' before toggling Reputation System.';
