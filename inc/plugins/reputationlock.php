@@ -36,6 +36,10 @@ if(!$db->field_exists('reputationlocked', "users"))
 {
 	$db->add_column("users", "reputationlocked", "tinyint(1) NOT NULL");
 }
+if(!$db->field_exists('replock_time', "users"))
+{
+	$db->add_column("users", "replock_time", "int(10) NOT NULL");
+}
 
 $setting_group = array(
     'name' => 'reputationlock',
@@ -48,6 +52,14 @@ $setting_group = array(
 $gid = $db->insert_query("settinggroups", $setting_group);
 
 $setting_array = array(
+
+    'reputationlock_timer' => array(
+        'title' => $lang->reputationlock_timer,
+        'description' => $lang->reputationlock_timerdesc,
+        'optionscode' => "text",
+        'value' => '0',
+        'disporder' => 3
+    ),
 
     'reputationlock_groups' => array(
         'title' => $lang->reputationlock_groupcontrol,
@@ -151,7 +163,8 @@ function reputationlock_deactivate()
 global $db;
 
 $db->drop_column("users", "reputationlocked");
-$db->delete_query('settings', "name IN ('reputationlock_enable', 'reputationlock_groups')");
+$db->drop_column("users", "replock_time");
+$db->delete_query('settings', "name IN ('reputationlock_enable', 'reputationlock_groups', 'reputationlock_timer')");
 $db->delete_query('settinggroups', "name = 'reputationlock'");
 $db->delete_query("templates", "title IN ('reputation_lock', 'reputation_lockerror')");
 
@@ -177,7 +190,7 @@ $u = get_user($uid);
 
 if($u['reputationlocked'] == 1)
 {
-	error($lang->reputationlock_lock);
+	error($lang->reputationlock_lock, $lang->reputationlock_error);
 }
 
 // Block from giving reputation
