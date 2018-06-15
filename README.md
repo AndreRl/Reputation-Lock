@@ -17,6 +17,7 @@ When toggling reputation system off:
 + User cannot receive reputation from any other user
 + Cannot give out positive, neutral or negative reputation
 + Other users will not be able to see previous reputations
++ User cannot toggle again until timer finished
 
 Bugs, Suggestions and Comments
 -----------
