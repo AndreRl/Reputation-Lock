@@ -19,7 +19,7 @@ $lang->load('reputation_lock');
         "website"        => "https://oseax.com",
         "author"        => "Wires <i>(AndreRl)</i>",
         "authorsite"    => "https://oseax.com",
-        "version"        => "1.0",
+        "version"        => "1.1",
         "guid"             => "",
         "compatibility" => "18*"
     );
