@@ -41,20 +41,34 @@ if(!in_array($mybb->user['usergroup'], $groups_allowed) && $mybb->settings['repu
 	error_no_permission();
 }
 
+// Has user surpassed minimum time?
+$calc = $user['replock_time'] + $mybb->settings['reputationlock_timer'];
+if(TIME_NOW < $calc && $user['replock_time'] != 0)
+{
+	
+$epoch = TIME_NOW + $mybb->settings['reputationlock_timer'];
+$time = date("F j, Y, g:i a", $epoch);
+
+	error($lang->reputationlock_errortime . $time . $lang->reputationlock_errortime2, $lang->reputationlock_error);
+}
+
+
 // If already set, we're disabling lock
 $useruid = $user['uid'];
 if($user['reputationlocked'] == 1)
 {
 	$entry = array(
 	
-	"reputationlocked" => '0'
+	"reputationlocked" => '0',
+	"replock_time" => TIME_NOW,
 	);
 	$db->update_query("users", $entry, "uid = $useruid");
 } else {
 	// Fair well reputation system
 	$entry = array(
 	
-	"reputationlocked" => 1
+	"reputationlocked" => 1,
+	"replock_time" => TIME_NOW,
 	);
 	$db->update_query("users", $entry, "uid = $useruid");
 }
