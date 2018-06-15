@@ -21,3 +21,6 @@ $l['reputationlock_groupcontrol'] = 'Group Control';
 $l['reputationlock_gcdesc'] = 'Which groups can use this feature?';
 $l['reputationlock_enable'] = 'Enable Plugin';
 $l['reputationlock_endesc'] = 'Do you want to enable Reputation Lock?';
+$l['reputationlock_timer'] = 'Timer';
+$l['reputationlock_timerdesc'] = 'How long before a user can toggle their reputation system AGAIN? Unix Time.';
+
